@@ -1,0 +1,11 @@
+<h1>Today's grid</h1>
+
+<%= @grid %>
+
+<form action="/score" method="get">
+  <label for="question">What's your best shot?</label>
+  <input type="text" id="question" name="word" placeholder="Your word">
+  <input type="hidden" name="grid" value="<%= @grid %>">
+  <input type="hidden" name="start_time" value="<%= Time.now %>">
+  <input type="submit" value="Submit">
+</form>
