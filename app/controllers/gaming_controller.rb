@@ -11,6 +11,17 @@ class GamingController < ApplicationController
     @translation = get_translation(@word)
     @score = compute_score(@word, @time_taken).round(2)
     @message = score_and_message(@word, @translation, params[:grid], @time_taken)
+    if session[:attempts]
+      session[:attempts] += 1
+    else
+      session[:attempts] = 1
+    end
+    if session[:score]
+      session[:score] += @score
+    else
+      session[:score] = @score
+    end
+    @average_score = session[:score] / session[:attempts]
   end
 
   def generate_grid(grid_size)
